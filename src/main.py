@@ -24,7 +24,7 @@ def softmax(x, temperature=1.0):
 
 np.random.seed(int(time.time()))
 
-batchSize = 32
+batchSize = 64
 seqLength = 64
 lstmSize = 256
 lstmLayers = 2
@@ -78,7 +78,7 @@ sess.run(tf.initialize_all_variables())
 
 data = textloader.load("data/shakespeare.txt")
 print(data.shape)
-for i in xrange(10000):
+for i in xrange(100000):
     id, td = sampleBatch(data, seqLength, batchSize)
 
     feedDict = {
@@ -95,7 +95,7 @@ seed[0, 0] = textloader.charVector('t', numChars)
 
 state = sess.run([initialState]) # tf.convert_to_tensor(initialState).eval(sess)
 
-for i in xrange(1000):
+for i in xrange(10000):
     feedDict = {
         inputData: seed,
         initialState: state
